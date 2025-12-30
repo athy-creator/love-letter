@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>End of the Beginning</title>
+
+<style>
+:root {
+  --bg: #f6efe9;
+  --card: #fff4ea;
+  --accent: #c97c5d;
+  --text: #4b3f36;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Georgia", serif;
+  background: var(--bg);
+  color: var(--text);
+  text-align: center;
+}
+
+/* fade animation */
+.fade {
+  animation: fadeIn 1.2s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+button {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+/* GREETING */
+#greeting {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  background: linear-gradient(#f6efe9, #f1e3d8);
+}
+
+#greeting h1 {
+  font-size: 2.4rem;
+}
+
+.highlight {
+  font-style: italic;
+  opacity: 0.9;
+}
+
+/* CONTAINER */
+#container {
+  display: none;
+  padding: 24px;
+}
+
+/* ENVELOPE */
+.envelope {
+  margin: 60px auto;
+  width: 160px;
+  height: 100px;
+  background: var(--accent);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* LETTER */
+#letter {
+  display: none;
+  max-width: 700px;
+  margin: auto;
+  background: var(--card);
+  padding: 30px;
+  border-radius: 20px;
+  text-align: left;
+}
+
+#letter p {
+  line-height: 1.6;
+}
+
+/* QUESTIONS */
+#questions {
+  display: none;
+  max-width: 500px;
+  margin: auto;
+}
+
+.response {
+  margin-top: 16px;
+  font-style: italic;
+}
+
+/* GALLERY */
+#gallery {
+  display: none;
+  max-width: 900px;
+  margin: auto;
+}
+
+.placeholder {
+  margin: 30px auto;
+  padding: 40px;
+  background: #ead7c8;
+  border-radius: 20px;
+  font-style: italic;
+}
+</style>
+</head>
+
+<body>
+
+<!-- GREETING -->
+<div id="greeting" class="fade">
+  <h1>Happy New Year</h1>
+  <p class="highlight">This isn’t an ending<br>it’s the end of the beginning</p>
+  <button onclick="start()">Continue the story</button>
+</div>
+
+<!-- MAIN -->
+<div id="container">
+
+  <!-- ENVELOPE -->
+  <div class="envelope fade" onclick="openLetter()">Open Envelope</div>
+
+  <!-- LETTER -->
+  <div id="letter" class="fade">
+    <p>Hey dumbo,</p>
+
+    <p>
+      I know we didn't start the year together but I want to end it with you and all the years awaiting.
+    </p>
+
+    <p>
+      I want to be with you, learn and experience many more things together. Re watch Stranger Things and Harry Potter marathons, tease each other, see each other flaws, watch and support you through every cricket match, brag about you to my friends or maybe marry each other ahemm.
+    </p>
+
+    <p>
+      Well I don’t know how stories usually begin but this is ours. Even though it’s only been a few weeks every moment with you feels like something I’ve been waiting for.
+    </p>
+
+    <p>
+      I don’t know what the next chapter will bring but I hope I get to be in every one of them with you.
+    </p>
+
+    <p>
+      Here’s to the end of the beginning and all that comes next.
+    </p>
+
+    <p>Love,<br>Your Amine</p>
+
+    <button onclick="startQuestions()">Next</button>
+  </div>
+
+  <!-- QUESTIONS -->
+  <div id="questions" class="fade">
+    <p id="question"></p>
+    <div id="buttons"></div>
+    <div class="response" id="response"></div>
+  </div>
+
+  <!-- GALLERY -->
+  <div id="gallery" class="fade">
+    <div class="placeholder">
+      Your jersey with my birthdate on it the day you asked me if I wanted it there. I thought it was cliche but I was more than happy.
+    </div>
+
+    <div class="placeholder">
+      The first picture you ever gave me. Before dating. Still adorable. Still mine.
+    </div>
+
+    <div class="placeholder">
+      Our farewell picture. The only one. And maybe that’s why I adore it so much.
+    </div>
+
+    <div class="placeholder">A memory we’ll add later</div>
+    <div class="placeholder">Another memory waiting to happen</div>
+  </div>
+
+</div>
+
+<script>
+function start() {
+  document.getElementById("greeting").style.display = "none";
+  document.getElementById("container").style.display = "block";
+}
+
+function openLetter() {
+  document.querySelector(".envelope").style.display = "none";
+  document.getElementById("letter").style.display = "block";
+}
+
+let qIndex = 0;
+
+const questions = [
+  {
+    q: "Up for Harry Potter and Stranger Things trivia someday?",
+    yes: "Hell yeah, I am ready with my wand and demogorgon knowledge to beat you up",
+    no: "I’ll still drag you into it someday"
+  },
+  {
+    q: "Ready to bear more of my mood swings?",
+    yes: "I guess I’ll be more moody than",
+    no: "Too late, you already signed up"
+  },
+  {
+    q: "Can I be your grammar corrector forever?",
+    yes: "Of course you chose yes baby, what would you do without me~",
+    no: "I’ll still correct you quietly"
+  },
+  {
+    q: "Can I be your partner in every season?",
+    yes: "Every season, every chapter, count me in",
+    no: "I’ll still walk beside you"
+  },
+  {
+    q: "Wanna be stuck together forever?",
+    yes: "I’m so glad we’re stuck together forever"
+  }
+];
+
+function startQuestions() {
+  document.getElementById("letter").style.display = "none";
+  document.getElementById("questions").style.display = "block";
+  showQuestion();
+}
+
+function showQuestion() {
+  if (qIndex >= questions.length) {
+    document.getElementById("questions").style.display = "none";
+    document.getElementById("gallery").style.display = "block";
+    return;
+  }
+
+  const q = questions[qIndex];
+  document.getElementById("question").innerText = q.q;
+  document.getElementById("response").innerText = "";
+  const btns = document.getElementById("buttons");
+  btns.innerHTML = "";
+
+  const yesBtn = document.createElement("button");
+  yesBtn.innerText = "Yes";
+  yesBtn.onclick = () => answer(q.yes);
+  btns.appendChild(yesBtn);
+
+  if (q.no) {
+    const noBtn = document.createElement("button");
+    noBtn.innerText = "No";
+    noBtn.onclick = () => answer(q.no);
+    btns.appendChild(noBtn);
+  }
+}
+
+function answer(text) {
+  document.getElementById("response").innerText = text;
+  qIndex++;
+  setTimeout(showQuestion, 1500);
+}
+</script>
+
+</body>
+</html>
